@@ -3,7 +3,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main(){
+    const userWithPosts = await prisma.user.findMany({
+        include: {
+            posts: true,
+        }
+    })
 
+    console.dir(userWithPosts, {depth: null});
 }
 
 main()
